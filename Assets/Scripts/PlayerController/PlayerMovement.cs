@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move;
 
-    public CharacterController playerController;
+    CharacterController playerController;
 
     [Header("PlayerRotationReset")]
 
@@ -25,12 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-
-        move = new Vector3(horizontal, 0, vertical);
-        playerController.Move(move * Time.deltaTime * moveSpeed);
-
         // Player rotation to cam
 
         if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
@@ -38,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
             newResetAngle = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, newResetAngle, rotationSpeed * Time.deltaTime).normalized;
         }
+
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
+        move = new Vector3(horizontal, 0, vertical);
+        playerController.Move(move * Time.deltaTime * moveSpeed);
 
         if (Input.GetKey(KeyCode.W))
         {

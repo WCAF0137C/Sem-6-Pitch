@@ -275,7 +275,7 @@ MonoBehaviour:
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
   UpdateMethod: 2
-  BlendUpdateMethod: 1
+  BlendUpdateMethod: 0
   LensModeOverride:
     Enabled: 0
     DefaultMode: 2
@@ -741,8 +741,7 @@ MonoBehaviour:
   horizontal: 0
   vertical: 0
   move: {x: 0, y: 0, z: 0}
-  playerController: {fileID: 0}
-  rotationSpeed: 2.5
+  rotationSpeed: 4
   newResetAngle: {x: 0, y: 0, z: 0, w: 0}
   cam: {fileID: 190105726}
 --- !u!1 &832575517
