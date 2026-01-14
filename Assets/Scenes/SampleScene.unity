@@ -133,8 +133,8 @@ GameObject:
   - component: {fileID: 190105724}
   - component: {fileID: 190105728}
   m_Layer: 0
-  m_Name: Temp Cam
-  m_TagString: Untagged
+  m_Name: Main Camera
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main Camera OLD
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,12 +736,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec95c4b5fe0c3a4cbb20b4db9e2c29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 0.04
-  strafeSpeed: 0.04
+  moveSpeed: 0.08
+  strafeSpeed: 0.08
   horizontal: 0
   vertical: 0
   move: {x: 0, y: 0, z: 0}
   playerController: {fileID: 0}
+  rotationSpeed: 2.5
+  newResetAngle: {x: 0, y: 0, z: 0, w: 0}
+  cam: {fileID: 190105726}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,7 +1279,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 947399060}
-  - {fileID: 507037393}
-  - {fileID: 190105727}
   - {fileID: 1733755305}
+  - {fileID: 190105727}
+  - {fileID: 507037393}
+  - {fileID: 947399060}

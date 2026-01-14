@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController playerController;
 
+    [Header("PlayerRotationReset")]
+
+    public float rotationSpeed;
+    public Quaternion newResetAngle;
+    public Camera cam;
+
     void Start()
     {
         playerController = GetComponent<CharacterController>();
@@ -24,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
 
         move = new Vector3(horizontal, 0, vertical);
         playerController.Move(move * Time.deltaTime * moveSpeed);
+
+        // Player rotation to cam
+
+        if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+        {
+            newResetAngle = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newResetAngle, rotationSpeed * Time.deltaTime).normalized;
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
