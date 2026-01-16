@@ -582,7 +582,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 190164089}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 626522842}
+        m_TargetAssemblyTypeName: EvidenceFolder, Assembly-CSharp
+        m_MethodName: ReportButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &190164089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +715,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 325751747}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 626522842}
+        m_TargetAssemblyTypeName: EvidenceFolder, Assembly-CSharp
+        m_MethodName: QuestionsButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &325751747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,14 +1477,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ddfc5917b8e6642b4ed928b213a077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  clueOverviewPanel: {fileID: 0}
-  clueDetailsPanel: {fileID: 0}
-  reportPanel: {fileID: 0}
-  questionsPanel: {fileID: 0}
-  inventoryPanel: {fileID: 0}
-  reportButton: {fileID: 0}
-  questionsButton: {fileID: 0}
-  inventoryButton: {fileID: 0}
+  folderCanvas: {fileID: 1361344306}
+  clueOverviewPanel: {fileID: 2051357604}
+  clueDetailsPanel: {fileID: 1223120510}
+  reportPanel: {fileID: 1684719759}
+  questionsPanel: {fileID: 164490045}
+  inventoryPanel: {fileID: 329444944}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 883623447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 626522842}
+        m_TargetAssemblyTypeName: EvidenceFolder, Assembly-CSharp
+        m_MethodName: ClueOverviewButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &883623447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2256,6 +2290,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1439324711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439324712}
+  - component: {fileID: 1439324713}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439324712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439324711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439324713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439324711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ff43d576a539d4fa9fd9b700a8bcd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1515238403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,12 +2395,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1223120511}
   - {fileID: 2051357605}
+  - {fileID: 1223120511}
   - {fileID: 883623445}
   - {fileID: 1684719760}
-  - {fileID: 329444945}
   - {fileID: 164490046}
+  - {fileID: 329444945}
   - {fileID: 190164087}
   - {fileID: 325751745}
   - {fileID: 2054390838}
@@ -3120,7 +3198,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054390840}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 626522842}
+        m_TargetAssemblyTypeName: EvidenceFolder, Assembly-CSharp
+        m_MethodName: InventoryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2054390840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3173,3 +3263,4 @@ SceneRoots:
   - {fileID: 947399060}
   - {fileID: 1433823327}
   - {fileID: 626522841}
+  - {fileID: 1439324712}
