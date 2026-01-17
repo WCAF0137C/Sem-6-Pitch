@@ -57,10 +57,12 @@ public class EvidenceFolder : MonoBehaviour
             if (menuIsOpen)
             {
                 CloseMenu();
+                GameManager.Instance.UnpauseCamera();
             }
             else
             {
                 OpenMenu();
+                GameManager.Instance.PauseCamera();
             }
         }
     }

@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed;
     public Quaternion newResetAngle;
     public Camera cam;
+    public CinemachineOrbitalFollow cameraRotation; // Component on the FreeLook cam that allows you to look around. Disabled when you need the mouse on-screen.
 
     void Start()
     {
@@ -25,6 +27,16 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Camera pause check
+        if (GameManager.Instance.cameraPaused)
+        {
+            cameraRotation.enabled = false;
+        }
+        else if (!GameManager.Instance.cameraPaused)
+        {
+            cameraRotation.enabled = true;
+        }
+
         // Player rotation to cam
 
         if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))

@@ -1,16 +1,65 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+// Game manager template copied off of Unity forums somewhere
+public class GameManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private static GameManager instance;
+
+    public bool cameraPaused = false;
+    public bool gamePaused = false;
+
+    // Handle memory between scenes/gameplay sessions here later? (Only if pitch gets picked)
+
+    private GameManager()
     {
-        
+        // Initialize your game manager here. Do not reference to GameObjects here (i.e. GameObject.Find etc.)
+        // Because the game manager will be created before the objects
     }
 
-    // Update is called once per frame
-    void Update()
+    public static GameManager Instance // Reference this with a capital letter
     {
-        
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameManager();
+            }
+
+            return instance;
+        }
+    }
+
+    public void PauseGame() // Potentially have this affect timescale?
+    {
+        if (!gamePaused)
+        {
+            gamePaused = true;
+            Debug.Log("Pause");
+        }
+    }
+
+    public void UnpauseGame() // Potentially have this affect timescale?
+    {
+        if (gamePaused)
+        {
+            gamePaused = false;
+            Debug.Log("Unpause");
+        }
+    }
+
+    public void PauseCamera()
+    {
+        if (!cameraPaused)
+        {
+            cameraPaused = true;
+        }
+    }
+
+    public void UnpauseCamera()
+    {
+        if (cameraPaused)
+        {
+            cameraPaused = false;
+        }
     }
 }
