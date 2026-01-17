@@ -19,6 +19,7 @@ public class EvidenceFolder : MonoBehaviour
     //This script functions as a menu system for our evidence folder
     public GameObject folderCanvas; // Animate later
     bool menuIsOpen = false;
+    LevelManager levelManager;
 
     // Clues section
     public GameObject clueOverviewPanel;
@@ -40,6 +41,8 @@ public class EvidenceFolder : MonoBehaviour
 
     void Start()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+
         clueOverviewPanel.SetActive(true);
         clueDetailsPanel.SetActive(false);
 
@@ -65,8 +68,23 @@ public class EvidenceFolder : MonoBehaviour
                 GameManager.Instance.PauseCamera();
             }
         }
+
+        // Testing out LevelManager access
+        //Debug.Log(levelManager.evidenceList[0].itemName);
     }
 
+    // Update evidence folder/inventory/report
+    public void SpawnClues() // To be called when level starts, instantiates the correct amount of evidence spots equal to clues in the level
+    {
+
+    }
+
+    public void UpdateClues() // Update clues as they are found and make them clickable
+    {
+        
+    }
+
+    // Menu navigation
     public void OpenMenu()
     {
         menuIsOpen = true;

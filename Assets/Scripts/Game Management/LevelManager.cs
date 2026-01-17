@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 {
@@ -6,7 +8,8 @@ public class LevelManager : MonoBehaviour
     // List of clues/evidence objects
     // List of... questions?
 
-
+    public List<EvidenceObject> evidenceList = new List<EvidenceObject>();
+    public List<InventoryObject> inventoryList = new List<InventoryObject>();
 
     void Start()
     {
