@@ -34,6 +34,7 @@ public class GameManager
         if (!gamePaused)
         {
             gamePaused = true;
+            Time.timeScale = 0f;
             Debug.Log("Pause");
         }
     }
@@ -43,6 +44,7 @@ public class GameManager
         if (gamePaused)
         {
             gamePaused = false;
+            Time.timeScale = 1f;
             Debug.Log("Unpause");
         }
     }

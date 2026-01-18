@@ -55,7 +55,7 @@ public class EvidenceFolder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) // This will need to be changed so a button can affect it later if controller support is desired
+        if (Input.GetKeyDown(KeyCode.Tab) && !GameManager.Instance.gamePaused) // This will need to be changed so a button can affect it later if controller support is desired
         {
             if (menuIsOpen)
             {
@@ -68,9 +68,11 @@ public class EvidenceFolder : MonoBehaviour
                 GameManager.Instance.PauseCamera();
             }
         }
-
-        // Testing out LevelManager access
-        //Debug.Log(levelManager.evidenceList[0].itemName);
+        else if (GameManager.Instance.gamePaused && folderCanvas.activeSelf)
+        {
+            CloseMenu();
+            GameManager.Instance.UnpauseCamera();
+        }
     }
 
     // Update evidence folder/inventory/report
