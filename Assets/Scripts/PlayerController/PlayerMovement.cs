@@ -18,23 +18,28 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed;
     public Quaternion newResetAngle;
     public Camera cam;
-    public CinemachineOrbitalFollow cameraRotation; // Component on the FreeLook cam that allows you to look around. Disabled when you need the mouse on-screen.
+    public GameObject freeLookCam;
 
     void Start()
     {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        freeLookCam = GameObject.FindGameObjectWithTag("FreeLookCam");
         playerController = GetComponent<CharacterController>();
+
+        // Lock cursor in place
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void FixedUpdate()
     {
         // Camera pause check
-        if (GameManager.Instance.cameraPaused)
+        if (GameManager.Instance.cameraPaused) // Pause camera orbitting
         {
-            cameraRotation.enabled = false;
+            freeLookCam.SetActive(false);
         }
-        else if (!GameManager.Instance.cameraPaused)
+        else if (!GameManager.Instance.cameraPaused) // Unpause camera orbitting
         {
-            cameraRotation.enabled = true;
+            freeLookCam.SetActive(true);
         }
 
         // Player rotation to cam

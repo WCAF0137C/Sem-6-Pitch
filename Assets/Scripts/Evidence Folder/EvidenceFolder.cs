@@ -92,9 +92,11 @@ public class EvidenceFolder : MonoBehaviour
         menuIsOpen = true;
         folderCanvas.SetActive(true);
 
+        Cursor.lockState = CursorLockMode.None;
+
         // Reset folder pages to defaults?
         ClueOverviewButton();
-        ReportButton();
+        //ReportButton();
 
         // Need to change camera/cursor control value in game manager
     }
@@ -103,6 +105,8 @@ public class EvidenceFolder : MonoBehaviour
     {
         menuIsOpen = false;
         folderCanvas.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
 
         // Need to change camera/cursor control value in game manager
     }

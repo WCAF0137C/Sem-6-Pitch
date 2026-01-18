@@ -35,7 +35,6 @@ public class GameManager
         {
             gamePaused = true;
             Time.timeScale = 0f;
-            Debug.Log("Pause");
         }
     }
 
@@ -45,7 +44,6 @@ public class GameManager
         {
             gamePaused = false;
             Time.timeScale = 1f;
-            Debug.Log("Unpause");
         }
     }
 
