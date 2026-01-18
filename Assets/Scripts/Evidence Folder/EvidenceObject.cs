@@ -6,6 +6,7 @@ using UnityEngine;
 public class EvidenceObject : ScriptableObject
 {
     public string itemName;
+    public bool clueFound; // Will enable other clue information in the case file
 
     // Not in use yet
     public Sprite icon;
