@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!GameManager.Instance.gamePaused) // Pause
+            if (!GameManager.Instance.gamePaused && !GameManager.Instance.runningDialogue) // Pause
             {
                 GameManager.Instance.PauseGame();
                 Cursor.lockState = CursorLockMode.None;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InventoryPickup : MonoBehaviour
 {
-    public LevelManager levelManager;
+    LevelManager levelManager;
 
     public InventoryObject inventoryItem; // The scriptable object that will be added to the inventory
     public GameObject mesh;
@@ -20,7 +20,7 @@ public class InventoryPickup : MonoBehaviour
         {
             // Change a HUD prompt
         }
-        if (playerIsPresent && Input.GetKeyDown(KeyCode.E) && mesh.activeInHierarchy)
+        if (playerIsPresent && Input.GetKeyDown(KeyCode.E) && mesh.activeInHierarchy && !GameManager.Instance.gamePaused && !GameManager.Instance.cameraPaused)
         {
             mesh.SetActive(false);
 

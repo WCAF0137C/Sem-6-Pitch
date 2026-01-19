@@ -6,10 +6,9 @@ public class DialogueSystem : MonoBehaviour
 {
     // Dialogue system lives here. I have one day left and am desperate for time, this won't be pretty
 
-    public GameObject dialoguePanel;
+    public GameObject dialogueCanvas;
 
     public TextMeshProUGUI dialogueText;
-    //public string[] lines; // Temp. Need to read lines from a scriptable object
     public Conversation currentConversation;
     public float textSpeed; // Time between characters
 
@@ -19,7 +18,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueText.text = string.Empty;
 
-        dialoguePanel.SetActive(false);
+        dialogueCanvas.SetActive(false);
     }
 
     void Update()
@@ -42,10 +41,11 @@ public class DialogueSystem : MonoBehaviour
     {
         currentConversation = conversation;
 
-        dialoguePanel.SetActive (true);
+        dialogueCanvas.SetActive (true);
         dialogueText.text = string.Empty;
 
         GameManager.Instance.StartDialogue();
+        GameManager.Instance.PauseCamera();
 
         index = 0;
         StartCoroutine(TypeLine());
@@ -70,8 +70,9 @@ public class DialogueSystem : MonoBehaviour
         }
         else
         {
-            dialoguePanel.SetActive(false);
+            dialogueCanvas.SetActive(false);
             GameManager.Instance.EndDialogue();
+            GameManager.Instance.UnpauseCamera();
         }
     }
 }

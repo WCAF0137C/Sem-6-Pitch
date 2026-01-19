@@ -7,7 +7,7 @@ public class GameManager
 
     public bool cameraPaused = false;
     public bool gamePaused = false;
-    public bool runningDialogue;
+    public bool runningDialogue = false;
 
     // Handle memory between scenes/gameplay sessions here later? (Only if pitch gets picked)
 

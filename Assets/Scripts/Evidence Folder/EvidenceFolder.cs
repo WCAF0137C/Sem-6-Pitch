@@ -55,7 +55,7 @@ public class EvidenceFolder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !GameManager.Instance.gamePaused) // This will need to be changed so a button can affect it later if controller support is desired
+        if (Input.GetKeyDown(KeyCode.Tab) && !GameManager.Instance.gamePaused && !GameManager.Instance.runningDialogue) // This will need to be changed so a button can affect it later if controller support is desired
         {
             if (menuIsOpen)
             {
@@ -72,6 +72,13 @@ public class EvidenceFolder : MonoBehaviour
         {
             CloseMenu();
             GameManager.Instance.UnpauseCamera();
+        }
+        else if (GameManager.Instance.runningDialogue && folderCanvas.activeSelf)
+        {
+            CloseMenu();
+            // Unpause camera is missing because the dialogue system script should pause it instead
+            // Theoretically, this should never happen unless we trigger a call when we're in this menu
+            // But hey, that's what failsafes are for, right?
         }
     }
 
