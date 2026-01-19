@@ -24,7 +24,7 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.Instance.runningDialogue && Input.GetMouseButtonDown(0))
         {
             if (dialogueText.text == currentConversation.lines[index])
             {
