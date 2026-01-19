@@ -7,6 +7,7 @@ public class GameManager
 
     public bool cameraPaused = false;
     public bool gamePaused = false;
+    public bool runningDialogue;
 
     // Handle memory between scenes/gameplay sessions here later? (Only if pitch gets picked)
 
@@ -61,5 +62,15 @@ public class GameManager
         {
             cameraPaused = false;
         }
+    }
+
+    public void StartDialogue()
+    {
+        runningDialogue = true;
+    }
+
+    public void EndDialogue()
+    {
+        runningDialogue = false;
     }
 }

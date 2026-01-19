@@ -9,42 +9,51 @@ public class DialogueSystem : MonoBehaviour
     public GameObject dialoguePanel;
 
     public TextMeshProUGUI dialogueText;
-    public string[] lines; // Temp. Need to read lines from a scriptable object
-    public float textSpeed;
+    //public string[] lines; // Temp. Need to read lines from a scriptable object
+    public Conversation currentConversation;
+    public float textSpeed; // Time between characters
 
     int index;
 
     void Start()
     {
         dialogueText.text = string.Empty;
-        StartDialogue();
+
+        dialoguePanel.SetActive(false);
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (dialogueText.text == lines[index])
+            if (dialogueText.text == currentConversation.lines[index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                dialogueText.text = lines[index];
+                dialogueText.text = currentConversation.lines[index];
             }
         }
     }
 
-    public void StartDialogue() // Needs to take a conversation as input
+    public void StartDialogue(Conversation conversation)
     {
+        currentConversation = conversation;
+
+        dialoguePanel.SetActive (true);
+        dialogueText.text = string.Empty;
+
+        GameManager.Instance.StartDialogue();
+
         index = 0;
         StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in currentConversation.lines[index].ToCharArray())
         {
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -53,7 +62,7 @@ public class DialogueSystem : MonoBehaviour
 
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < currentConversation.lines.Length - 1)
         {
             index++;
             dialogueText.text = string.Empty;
@@ -62,6 +71,7 @@ public class DialogueSystem : MonoBehaviour
         else
         {
             dialoguePanel.SetActive(false);
+            GameManager.Instance.EndDialogue();
         }
     }
 }
