@@ -24,7 +24,14 @@ public class EvidencePickup : MonoBehaviour
         {
             mesh.SetActive(false);
 
-            levelManager.evidenceList.Add(evidenceItem); // Add the object to the evidence list. Need to alter how this works so that clues can be uncovered
+            for (int i = 0; i < levelManager.evidenceList.Count; i++)
+            {
+                if (levelManager.evidenceList[i].name == evidenceItem.name)
+                {
+                    levelManager.evidenceList[i].clueFound = true;
+                }
+            }
+            //levelManager.evidenceList.Add(evidenceItem); // Add the object to the evidence list. Need to alter how this works so that clues can be uncovered
             // Maybe search the evidence list for a clue with the same name and toggle it to be on/found.
         }
     }

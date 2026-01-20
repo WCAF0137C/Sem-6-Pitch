@@ -8,12 +8,15 @@ public class LevelManager : MonoBehaviour
     // List of clues/evidence objects
     // List of... questions?
 
-    public List<EvidenceObject> evidenceList = new List<EvidenceObject>();
     public List<InventoryObject> inventoryList = new List<InventoryObject>();
+    public List<EvidenceObject> evidenceList = new List<EvidenceObject>();
 
     void Start()
     {
-        
+        for (int i = 0; i < evidenceList.Count; i++) // This is another one of those patchwork solutions that I really wouldn't normally advise
+        {
+            evidenceList[i].clueFound = false;
+        }
     }
 
     void Update()

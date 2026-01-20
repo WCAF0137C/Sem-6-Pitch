@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34376f5a2ad5204aaeec2295bc3adbf, type: 3}
-  m_Name: Test Evidence
+  m_Name: Test Evidence A
   m_EditorClassIdentifier: Assembly-CSharp::EvidenceObject
-  itemName: Test Evidence
+  clueFound: 1
+  itemName: Evidence A
+  flavourText: The first clue
+  fullDescription: This is where you can lay out a larger description for your evidence.
+    This is Evidence A's description.
   icon: {fileID: 0}
-  flavourText: 

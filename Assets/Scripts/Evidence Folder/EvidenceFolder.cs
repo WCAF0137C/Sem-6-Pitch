@@ -1,21 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using TMPro;
 
 public class EvidenceFolder : MonoBehaviour
 {
-    public enum CluesEnum
-    {
-        Overview,
-        Details
-    }
-
-    public enum InfoEnum
-    {
-        Report,
-        Questions,
-        Inventory
-    }
-
     //This script functions as a menu system for our evidence folder
     public GameObject folderCanvas; // Animate later
     bool menuIsOpen = false;
@@ -24,9 +14,13 @@ public class EvidenceFolder : MonoBehaviour
     // Clues section
     public GameObject clueOverviewPanel;
     public GameObject clueDetailsPanel;
-    //public Button clueReturnButton;
+    public GameObject clueReturnButton;
 
-    private CluesEnum currentCluePanel = CluesEnum.Overview;
+    // Clue details subection
+    public TextMeshProUGUI clueDetailsTitle;
+    public TextMeshProUGUI clueDetailsDescription;
+
+    public List<GameObject> evidenceSlots;
 
     // Info section
     public GameObject reportPanel;
@@ -37,8 +31,6 @@ public class EvidenceFolder : MonoBehaviour
     //public Button questionsButton;
     //public Button inventoryButton;
 
-    private InfoEnum currentInfoPanel = InfoEnum.Report;
-
     void Start()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
@@ -46,9 +38,26 @@ public class EvidenceFolder : MonoBehaviour
         clueOverviewPanel.SetActive(true);
         clueDetailsPanel.SetActive(false);
 
+        clueReturnButton.SetActive(false);
+
         reportPanel.SetActive(true);
         questionsPanel.SetActive(false);
         inventoryPanel.SetActive(false);
+
+        // Run through evidence and allot the correct amount of clue slots
+        for (int i = 0; i < evidenceSlots.Count; i++)
+        {
+            evidenceSlots[i].GetComponentInChildren<Button>().interactable = false;
+
+            if (i < levelManager.evidenceList.Count)
+            {
+                evidenceSlots[i].SetActive(true);
+            }
+            else
+            {
+                evidenceSlots[i].SetActive(false);
+            }
+        }
 
         folderCanvas.SetActive(false); // Animate later
     }
@@ -80,17 +89,27 @@ public class EvidenceFolder : MonoBehaviour
             // Theoretically, this should never happen unless we trigger a call when we're in this menu
             // But hey, that's what failsafes are for, right?
         }
-    }
 
-    // Update evidence folder/inventory/report
-    public void SpawnClues() // To be called when level starts, instantiates the correct amount of evidence spots equal to clues in the level
-    {
+        // THERE ARE DEFINITELY BETTER WAYS TO DO THIS
+        int activeSlots = 0;
+        for (int i = 0; i < evidenceSlots.Count; i++)
+        {
+            if (evidenceSlots[i].activeInHierarchy)
+            {
+                activeSlots += 1;
+            }
+        }
 
-    }
-
-    public void UpdateClues() // Update clues as they are found and make them clickable
-    {
-        
+        for (int i = 0; i < activeSlots; i++)
+        {
+            if (levelManager.evidenceList[i].clueFound && !evidenceSlots[i].GetComponentInChildren<Button>().interactable)
+            {
+                evidenceSlots[i].GetComponentInChildren<Button>().interactable = true;
+                TextMeshProUGUI[] textList = evidenceSlots[i].GetComponentsInChildren<TextMeshProUGUI>();
+                textList[0].text = levelManager.evidenceList[i].name;
+                textList[1].text = levelManager.evidenceList[i].flavourText;
+            }
+        }
     }
 
     // Menu navigation
@@ -104,8 +123,6 @@ public class EvidenceFolder : MonoBehaviour
         // Reset folder pages to defaults?
         ClueOverviewButton();
         //ReportButton();
-
-        // Need to change camera/cursor control value in game manager
     }
 
     public void CloseMenu()
@@ -122,16 +139,22 @@ public class EvidenceFolder : MonoBehaviour
     {
         clueOverviewPanel.SetActive(true);
         clueDetailsPanel.SetActive(false);
-
-        currentCluePanel = CluesEnum.Overview;
+        clueReturnButton.SetActive(false);
     }
 
-    public void ClueDetailsButton() // Currently unused, gonna need to be accessed by specific clue buttons. Maybe take info from scriptable objects?
+    public void ClueDetails(EvidenceObject clue) // Currently unused, gonna need to be accessed by specific clue buttons. Maybe take info from scriptable objects?
     {
         clueOverviewPanel.SetActive(false);
         clueDetailsPanel.SetActive(true);
+        clueReturnButton.SetActive(true);
 
-        currentCluePanel = CluesEnum.Details;
+        clueDetailsTitle.text = clue.name;
+        clueDetailsDescription.text = clue.fullDescription;
+    }
+
+    public void ClueDetailsButton(int slotID)
+    {
+        ClueDetails(levelManager.evidenceList[slotID]);
     }
 
     public void ReportButton()
@@ -139,8 +162,6 @@ public class EvidenceFolder : MonoBehaviour
         reportPanel.SetActive(true);
         questionsPanel.SetActive(false);
         inventoryPanel.SetActive(false);
-
-        currentInfoPanel = InfoEnum.Report;
     }
 
     public void QuestionsButton()
@@ -148,8 +169,6 @@ public class EvidenceFolder : MonoBehaviour
         reportPanel.SetActive(false);
         questionsPanel.SetActive(true);
         inventoryPanel.SetActive(false);
-
-        currentInfoPanel = InfoEnum.Questions;
     }
 
     public void InventoryButton()
@@ -157,7 +176,5 @@ public class EvidenceFolder : MonoBehaviour
         reportPanel.SetActive(false);
         questionsPanel.SetActive(false);
         inventoryPanel.SetActive(true);
-
-        currentInfoPanel = InfoEnum.Inventory;
     }
 }

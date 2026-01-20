@@ -5,10 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class EvidenceObject : ScriptableObject
 {
+    public bool clueFound = false; // Will enable other clue information in the case file
     public string itemName;
-    public bool clueFound; // Will enable other clue information in the case file
+    public string flavourText;
+    [TextArea(15, 20)]
+    public string fullDescription;
 
     // Not in use yet
     public Sprite icon;
-    public string flavourText; // Maybe not necessary?
 }

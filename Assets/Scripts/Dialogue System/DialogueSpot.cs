@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class DialogueSpot : MonoBehaviour
 {
+    // THIS SCRIPT IS VERY BASIC IN FUNCTION RIGHT NOW
+    // My recommendation is to either make it trigger an event after completing a bit of dialogue,
+    // or to treat it as a simple hint/guidance point in the level.
+
     LevelManager levelManager;
-    DialogueSystem dialogueSystem;
+    public DialogueSystem dialogueSystem;
 
     public Conversation conversation;
     //public GameObject mesh;
