@@ -27,6 +27,8 @@ public class EvidenceFolder : MonoBehaviour
     public GameObject questionsPanel;
     public GameObject inventoryPanel;
 
+    public List<Button> inventorySlots;
+
     //public Button reportButton;
     //public Button questionsButton;
     //public Button inventoryButton;
@@ -39,10 +41,6 @@ public class EvidenceFolder : MonoBehaviour
         clueDetailsPanel.SetActive(false);
 
         clueReturnButton.SetActive(false);
-
-        reportPanel.SetActive(true);
-        questionsPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
 
         // Run through evidence and allot the correct amount of clue slots
         for (int i = 0; i < evidenceSlots.Count; i++)
@@ -59,10 +57,27 @@ public class EvidenceFolder : MonoBehaviour
             }
         }
 
+        reportPanel.SetActive(true);
+        questionsPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
+
+        // Run through inventory and disable buttons
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            inventorySlots[i].interactable = false;
+        }
+
         folderCanvas.SetActive(false); // Animate later
     }
 
     void Update()
+    {
+        MenuToggling();
+        EnableClues();
+    }
+
+    // Get input and open/close the evidence folder menu
+    void MenuToggling()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && !GameManager.Instance.gamePaused && !GameManager.Instance.runningDialogue) // This will need to be changed so a button can affect it later if controller support is desired
         {
@@ -89,7 +104,10 @@ public class EvidenceFolder : MonoBehaviour
             // Theoretically, this should never happen unless we trigger a call when we're in this menu
             // But hey, that's what failsafes are for, right?
         }
+    }
 
+    void EnableClues()
+    {
         // THERE ARE DEFINITELY BETTER WAYS TO DO THIS
         int activeSlots = 0;
         for (int i = 0; i < evidenceSlots.Count; i++)

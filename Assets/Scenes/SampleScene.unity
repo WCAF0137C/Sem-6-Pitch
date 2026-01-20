@@ -744,7 +744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &164490046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1392,7 +1392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &329444945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3053,6 +3053,10 @@ MonoBehaviour:
   reportPanel: {fileID: 1684719759}
   questionsPanel: {fileID: 164490045}
   inventoryPanel: {fileID: 329444944}
+  inventorySlots:
+  - {fileID: 1639450252}
+  - {fileID: 950323503}
+  - {fileID: 1880434899}
 --- !u!1 &642937033
 GameObject:
   m_ObjectHideFlags: 0
