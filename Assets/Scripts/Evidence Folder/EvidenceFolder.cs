@@ -135,6 +135,11 @@ public class EvidenceFolder : MonoBehaviour
     {
         // THERE ARE DEFINITELY BETTER WAYS TO DO THIS
         // For instance, this can't handle any more than 3 items in the level. It will shit itself
+        if (levelManager.selectedObject == null)
+        {
+            selectedObjectPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Empty";
+        }
+
         if (levelManager.inventoryList.Count > 0)
         {
             for (int i = 0; i < levelManager.inventoryList.Count; i++)

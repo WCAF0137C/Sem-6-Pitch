@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d965b3eab4680547a21527a0f677918, type: 3}
   m_Name: Test Inventory
   m_EditorClassIdentifier: Assembly-CSharp::InventoryObject
-  itemName: Test Inventory
+  itemName: Donuts
   icon: {fileID: 0}
-  flavourText: 
+  flavourText: Yummy
