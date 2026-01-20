@@ -9,7 +9,10 @@ public class LevelManager : MonoBehaviour
     // List of... questions?
 
     public List<InventoryObject> inventoryList = new List<InventoryObject>();
+    //public InventoryObject[] inventoryList;
     public List<EvidenceObject> evidenceList = new List<EvidenceObject>();
+
+    public InventoryObject selectedObject; // What object the player is holding
 
     void Start()
     {

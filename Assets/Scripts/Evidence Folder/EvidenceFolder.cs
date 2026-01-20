@@ -27,20 +27,13 @@ public class EvidenceFolder : MonoBehaviour
     public GameObject questionsPanel;
     public GameObject inventoryPanel;
 
-    public List<Button> inventorySlots;
+    public List<GameObject> inventorySlots;
 
-    //public Button reportButton;
-    //public Button questionsButton;
-    //public Button inventoryButton;
+    public GameObject selectedObjectPanel; // This either reaaally shouldn't be in this script, it should reallly be under the same tree in the hierarchy
 
     void Start()
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-
-        clueOverviewPanel.SetActive(true);
-        clueDetailsPanel.SetActive(false);
-
-        clueReturnButton.SetActive(false);
 
         // Run through evidence and allot the correct amount of clue slots
         for (int i = 0; i < evidenceSlots.Count; i++)
@@ -57,15 +50,20 @@ public class EvidenceFolder : MonoBehaviour
             }
         }
 
-        reportPanel.SetActive(true);
-        questionsPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
+        clueOverviewPanel.SetActive(true);
+        clueDetailsPanel.SetActive(false);
+
+        clueReturnButton.SetActive(false);
 
         // Run through inventory and disable buttons
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            inventorySlots[i].interactable = false;
+            inventorySlots[i].GetComponent<Button>().interactable = false;
         }
+
+        reportPanel.SetActive(true);
+        questionsPanel.SetActive(false);
+        inventoryPanel.SetActive(false);
 
         folderCanvas.SetActive(false); // Animate later
     }
@@ -74,6 +72,7 @@ public class EvidenceFolder : MonoBehaviour
     {
         MenuToggling();
         EnableClues();
+        EnableItems();
     }
 
     // Get input and open/close the evidence folder menu
@@ -106,6 +105,7 @@ public class EvidenceFolder : MonoBehaviour
         }
     }
 
+    // Updates the clue visibility as you collect them throughout the level
     void EnableClues()
     {
         // THERE ARE DEFINITELY BETTER WAYS TO DO THIS
@@ -126,6 +126,29 @@ public class EvidenceFolder : MonoBehaviour
                 TextMeshProUGUI[] textList = evidenceSlots[i].GetComponentsInChildren<TextMeshProUGUI>();
                 textList[0].text = levelManager.evidenceList[i].name;
                 textList[1].text = levelManager.evidenceList[i].flavourText;
+            }
+        }
+    }
+
+    // Updates the item visibility as you collect them throughout the level
+    void EnableItems()
+    {
+        // THERE ARE DEFINITELY BETTER WAYS TO DO THIS
+        // For instance, this can't handle any more than 3 items in the level. It will shit itself
+        if (levelManager.inventoryList.Count > 0)
+        {
+            for (int i = 0; i < levelManager.inventoryList.Count; i++)
+            {
+                if (levelManager.inventoryList[i] != null)
+                {
+                    inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = levelManager.inventoryList[i].name;
+                    inventorySlots[i].GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = "Empty";
+                    inventorySlots[i].GetComponent<Button>().interactable = false;
+                }
             }
         }
     }
@@ -194,5 +217,19 @@ public class EvidenceFolder : MonoBehaviour
         reportPanel.SetActive(false);
         questionsPanel.SetActive(false);
         inventoryPanel.SetActive(true);
+    }
+
+    public void InventorySelect(int slotID)
+    {
+        levelManager.selectedObject = levelManager.inventoryList[slotID];
+
+        selectedObjectPanel.GetComponentInChildren<TextMeshProUGUI>().text = levelManager.selectedObject.name;
+    }
+
+    public void InventoryDeselect()
+    {
+        levelManager.selectedObject = null;
+
+        selectedObjectPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Empty";
     }
 }
