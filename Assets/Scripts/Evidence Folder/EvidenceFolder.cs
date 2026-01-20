@@ -146,7 +146,7 @@ public class EvidenceFolder : MonoBehaviour
             {
                 if (levelManager.inventoryList[i] != null)
                 {
-                    inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = levelManager.inventoryList[i].name;
+                    inventorySlots[i].GetComponentInChildren<TextMeshProUGUI>().text = levelManager.inventoryList[i].itemName;
                     inventorySlots[i].GetComponent<Button>().interactable = true;
                 }
                 else
@@ -228,7 +228,7 @@ public class EvidenceFolder : MonoBehaviour
     {
         levelManager.selectedObject = levelManager.inventoryList[slotID];
 
-        selectedObjectPanel.GetComponentInChildren<TextMeshProUGUI>().text = levelManager.selectedObject.name;
+        selectedObjectPanel.GetComponentInChildren<TextMeshProUGUI>().text = levelManager.selectedObject.itemName;
     }
 
     public void InventoryDeselect()

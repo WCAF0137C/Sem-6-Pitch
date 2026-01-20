@@ -28,6 +28,8 @@ public class InventoryPlacement : MonoBehaviour
 
             levelManager.selectedObject = null;
             levelManager.inventoryList.Remove(requiredItem); // Add the object to the inventory;
+
+            isComplete = true;
         }
     }
 

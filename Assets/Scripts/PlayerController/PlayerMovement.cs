@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    GameObject startPoint;
+
     public float moveSpeed = 0.04f;
     public float strafeSpeed = 0.04f;
 
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        startPoint = GameObject.FindGameObjectWithTag("StartPoint");
+
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         freeLookCam = GameObject.FindGameObjectWithTag("FreeLookCam");
         playerController = GetComponent<CharacterController>();
@@ -71,6 +75,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             playerController.Move(transform.TransformDirection(Vector3.right) * strafeSpeed);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            playerController.enabled = false;
+            transform.position = startPoint.transform.position;
+            playerController.enabled = true;
         }
     }
 }
